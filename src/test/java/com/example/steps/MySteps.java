@@ -92,8 +92,8 @@ public class MySteps {
     @And("user removes the {int}nd task from the to-do list")
     public void userRemovesTheNdTaskFromTheToDoList(int recordNumber) {
         new MainPage().deletingTaskByNumberInTheToDoList(recordNumber);
-        // wait.until(ExpectedConditions.invisibilityOfElementLocated(new MainPage().listAllAddTasks.get(recordNumber)));
-    }
+     //wait.until(ExpectedConditions.invisibilityOfElementLocated(new MainPage().listAllAddTasks.get(recordNumber)));
+     }
 
     @Then("{int} tasks remain in the to-do list")
     public void tasksRemainInTheToDoList(int numberOfRecords) {
@@ -171,7 +171,6 @@ public class MySteps {
     @And("user marks the {int}nd task from the to-do list")
     public void userMarksTheNdTaskFromTheToDoList(int recordNumber) {
         new MainPage().markingTaskByNumberInTheToDoList(recordNumber);
-
     }
 
     @Then("there's {int} marked task on the to-do list")
