@@ -7,9 +7,6 @@ import java.util.List;
 
 public class MainPage extends BasePage {
 
-    @FindBy(xpath = "//div")
-    public WebElement allDiv;
-
 
     @FindBy(xpath = "//div[@id='form']/form/input")
     public WebElement fieldAddTask;
@@ -29,7 +26,7 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//button[contains(@class,'delete-btn')]")
     public List<WebElement> listButtonsDeleteTasks;
 
-    @FindBy(xpath = "//div[@class='todo darker-todo completed']/li")
+    @FindBy(xpath = "//div[contains(@class,'completed')]/li")
     public List<WebElement> listCheckTasks;
 
 

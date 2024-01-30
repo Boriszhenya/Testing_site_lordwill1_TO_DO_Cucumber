@@ -75,7 +75,7 @@ public class MySteps {
         MainPage m = new MainPage();
         wait.until(ExpectedConditions.invisibilityOf(m.listAllAddTasks.getFirst()));
         assertTrue(m.listAllAddTasks.isEmpty());
-      }
+    }
 
     @When("a user adds a task list to the to-do list")
     public void aUserAddsATaskListToTheToDoList(List<String> tasks) {
@@ -90,18 +90,19 @@ public class MySteps {
     }
 
     @And("user removes the {int}nd task from the to-do list")
-    public void userTheUserRemovesTheNdTaskFromTheToDoList(int recordNumber) {
+    public void userRemovesTheNdTaskFromTheToDoList(int recordNumber) {
         new MainPage().deletingTaskByNumberInTheToDoList(recordNumber);
+        // wait.until(ExpectedConditions.invisibilityOfElementLocated(new MainPage().listAllAddTasks.get(recordNumber)));
     }
 
     @Then("{int} tasks remain in the to-do list")
     public void tasksRemainInTheToDoList(int numberOfRecords) {
-        wait.until(ExpectedConditions.visibilityOf(new MainPage().allDiv));
-        /*try {
+
+        try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }*/
+        }
         assertEquals(numberOfRecords, new MainPage().listAllAddTasks.size());
     }
 
@@ -153,19 +154,14 @@ public class MySteps {
 
 
     @When("user selects theme {string}")
-    public void userSelectsTheme(String theme) {
+    public void userSelectsTheme(String theme) throws InterruptedException {
         String locator = "//div[@id='header']/div/div[contains(@class,'" + theme + "')]";
         Context.getDriver().findElement(By.xpath(locator)).click();
+        Thread.sleep(350);
     }
 
     @Then("the new task input field has background-color {string}")
     public void theNewTaskInputFieldHasBackgroundColor(String background_color) {
-        wait.until(ExpectedConditions.visibilityOf(new MainPage().allDiv));
-        /*try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }*/
         MainPage mainPage = new MainPage();
         String colorValue = mainPage.fieldAddTask.getCssValue("background-color");
         String hexColor = mainPage.convertToHex(colorValue);
@@ -175,16 +171,11 @@ public class MySteps {
     @And("user marks the {int}nd task from the to-do list")
     public void userMarksTheNdTaskFromTheToDoList(int recordNumber) {
         new MainPage().markingTaskByNumberInTheToDoList(recordNumber);
+
     }
 
     @Then("there's {int} marked task on the to-do list")
     public void thereSMarkedTaskOnTheToDoList(int numberMarkedTasks) {
-        wait.until(ExpectedConditions.visibilityOf(new MainPage().allDiv));
-        /*try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }*/
         assertEquals(numberMarkedTasks, new MainPage().listCheckTasks.size());
     }
 }
