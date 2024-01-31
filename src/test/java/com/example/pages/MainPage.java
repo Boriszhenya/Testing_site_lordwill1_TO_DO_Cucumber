@@ -2,8 +2,11 @@ package com.example.pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
+
+import static com.example.context.Context.wait;
 
 public class MainPage extends BasePage {
 
@@ -45,27 +48,24 @@ public class MainPage extends BasePage {
     }
 
     public void deleteOneTaskFromList(String task) {
-
         for (int i = 0; i < listAllAddTasks.size(); i++) {
-
             if (listAllAddTasks.get(i).getText().equals(task)) {
                 listButtonsDeleteTasks.get(i).click();
             }
         }
-        System.out.println(listAllAddTasks.size());
     }
 
     public void deletingTaskByNumberInTheToDoList(int recordNumber) {
-
         for (int i = 0; i < listAllAddTasks.size(); i++) {
             if (i == (recordNumber - 1)) {
                 listButtonsDeleteTasks.get(i).click();
+                wait.until(ExpectedConditions.invisibilityOf(listAllAddTasks.get(i)));
             }
         }
+
     }
 
     public void markingTaskByNumberInTheToDoList(int recordNumber) {
-
         for (int i = 0; i < listAllAddTasks.size(); i++) {
             if (i == (recordNumber - 1)) {
                 listButtonsToMarkTaskCompletion.get(i).click();

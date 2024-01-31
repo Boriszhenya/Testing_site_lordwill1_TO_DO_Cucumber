@@ -92,17 +92,10 @@ public class MySteps {
     @And("user removes the {int}nd task from the to-do list")
     public void userRemovesTheNdTaskFromTheToDoList(int recordNumber) {
         new MainPage().deletingTaskByNumberInTheToDoList(recordNumber);
-     //wait.until(ExpectedConditions.invisibilityOfElementLocated(new MainPage().listAllAddTasks.get(recordNumber)));
-     }
+    }
 
     @Then("{int} tasks remain in the to-do list")
     public void tasksRemainInTheToDoList(int numberOfRecords) {
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         assertEquals(numberOfRecords, new MainPage().listAllAddTasks.size());
     }
 
