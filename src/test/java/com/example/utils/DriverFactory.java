@@ -25,11 +25,11 @@ public class DriverFactory {
         WebDriver driver;
         switch (browser) {
             case "chrome" -> {
-                //WebDriverManager.chromedriver().setup();
-                System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver"); // добавлен
+                WebDriverManager.chromedriver().setup();
+                //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver"); // добавлен
 
                 ChromeOptions options = new ChromeOptions();
-                options.setBinary("/usr/bin/google-chrome");// добавлен
+               // options.setBinary("/usr/bin/google-chrome");// добавлен
 
                 if (ConfigurationReader.get("headless").toLowerCase().contains("true")) {
                     options.addArguments("--headless");
