@@ -26,8 +26,11 @@ public class DriverFactory {
         switch (browser) {
             case "chrome" -> {
                 //WebDriverManager.chromedriver().setup();
-                WebDriverManager.chromedriver().driverVersion("138.0.7204.157").setup();
+                System.setProperty("webdriver.chrome.driver", "/home/ec2-user/chromedriver-linux64/chromedriver"); // добавлен
+
                 ChromeOptions options = new ChromeOptions();
+                options.setBinary("/home/ec2-user/chrome-linux64/chrome");// добавлен
+
                 if (ConfigurationReader.get("headless").toLowerCase().contains("true")) {
                     options.addArguments("--headless");
                     options.addArguments("--no-sandbox");
